@@ -1,0 +1,151 @@
+package com.example.james_chang.easyandroid;
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.*;
+import android.view.View.*;
+import android.widget.*;
+import java.lang.*;
+import android.app.Activity;
+
+public class MainActivity extends Activity implements OnClickListener {
+    EditText display;
+    Button button1,button2,button3,button4,button5,button6,button7,button8,button9,button0,buttonX,buttonMin,buttonPlus,buttonDiv,buttonResult,buttonClear;
+    String a;
+    TextView result;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
+        button5 = (Button) findViewById(R.id.button5);
+        button6 = (Button) findViewById(R.id.button6);
+        button7 = (Button) findViewById(R.id.button7);
+        button8 = (Button) findViewById(R.id.button8);
+        button9 = (Button) findViewById(R.id.button9);
+        button0 = (Button) findViewById(R.id.button0);
+        buttonX = (Button) findViewById(R.id.buttonX);
+        buttonMin = (Button) findViewById(R.id.buttonMin);
+        buttonPlus = (Button) findViewById(R.id.buttonPlus);
+        buttonDiv = (Button) findViewById(R.id.buttonDiv);
+        buttonClear = (Button) findViewById(R.id.buttonClear);
+        buttonResult = (Button) findViewById(R.id.buttonResult);
+        display = (EditText) findViewById(R.id.display);
+
+
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
+        button5.setOnClickListener(this);
+        button6.setOnClickListener(this);
+        button7.setOnClickListener(this);
+        button8.setOnClickListener(this);
+        button9.setOnClickListener(this);
+        button0.setOnClickListener(this);
+        buttonX.setOnClickListener(this);
+        buttonMin.setOnClickListener(this);
+        buttonPlus.setOnClickListener(this);
+        buttonDiv.setOnClickListener(this);
+        buttonClear.setOnClickListener(this);
+        buttonResult.setOnClickListener(this);
+        display.setOnClickListener(this);
+}
+public void onClick(View v)
+{
+    switch (v.getId())
+    {
+
+        case R.id.button1:
+            a = display.getText().toString();
+            display.setText(a + "1");
+            break;
+        case R.id.button2:
+            a = display.getText().toString();
+            display.setText(a + "2");
+            break;
+        case R.id.button3:
+            a = display.getText().toString();
+            display.setText(a + "3");
+            break;
+        case R.id.button4:
+            a = display.getText().toString();
+            display.setText(a + "4");
+            break;
+        case R.id.button5:
+            a = display.getText().toString();
+            display.setText(a + "5");
+            break;
+        case R.id.button6:
+            a = display.getText().toString();
+            display.setText(a + "6");
+            break;
+        case R.id.button7:
+            a = display.getText().toString();
+            display.setText(a + "7");
+            break;
+        case R.id.button8:
+            a = display.getText().toString();
+            display.setText(a + "8");
+            break;
+        case R.id.button9:
+            a = display.getText().toString();
+            display.setText(a + "9");
+            break;
+        case R.id.button0:
+            a = display.getText().toString();
+            display.setText(a + "0");
+            break;
+        case R.id.buttonX:
+            a = display.getText().toString();
+            display.setText(a + "*");
+            break;
+        case R.id.buttonMin:
+            a = display.getText().toString();
+            display.setText(a + "-");
+            break;
+        case R.id.buttonPlus:
+            a = display.getText().toString();
+            display.setText(a + "+");
+            break;
+        case R.id.buttonDiv:
+            a = display.getText().toString();
+            display.setText(a + "/");
+            break;
+        case R.id.buttonClear:
+            a = display.getText().toString();
+            display.setText("");
+            break;
+        case R.id.buttonResult:
+            a = display.getText().toString();
+            display.setText(a + "=0");
+            result.setText("");
+            break;
+        case R.id.buttonDel:
+        String str = display.getText().toString();
+        if(str.length()>1){
+            str = display.substring(0, str.length() - 1);
+            display.setText(str);
+        }else if(str.length()<=1){
+            display.setText("");
+    }
+}
+@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}

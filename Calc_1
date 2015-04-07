@@ -1,19 +1,20 @@
-package com.example.james_chang.easyandroid;
-
+package com.example.jc.myapplication;
+import android.widget.*;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.*;
 import android.view.View.*;
-import android.widget.*;
 import java.lang.*;
 import android.app.Activity;
+import android.view.View;
+
+import org.w3c.dom.ls.LSParserFilter;
 
 public class MainActivity extends Activity implements OnClickListener {
     EditText display;
     Button button1,button2,button3,button4,button5,button6,button7,button8,button9,button0,buttonX,buttonMin,buttonPlus,buttonDiv,buttonResult,buttonClear;
-    String a;
-    TextView result;
-
+    int a,b;
+    Boolean add,sub,mul,div;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +36,6 @@ public class MainActivity extends Activity implements OnClickListener {
         buttonClear = (Button) findViewById(R.id.buttonClear);
         buttonResult = (Button) findViewById(R.id.buttonResult);
         display = (EditText) findViewById(R.id.display);
-
-
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
@@ -54,98 +53,95 @@ public class MainActivity extends Activity implements OnClickListener {
         buttonClear.setOnClickListener(this);
         buttonResult.setOnClickListener(this);
         display.setOnClickListener(this);
-}
-public void onClick(View v)
-{
-    switch (v.getId())
-    {
-
-        case R.id.button1:
-            a = display.getText().toString();
-            display.setText(a + "1");
-            break;
-        case R.id.button2:
-            a = display.getText().toString();
-            display.setText(a + "2");
-            break;
-        case R.id.button3:
-            a = display.getText().toString();
-            display.setText(a + "3");
-            break;
-        case R.id.button4:
-            a = display.getText().toString();
-            display.setText(a + "4");
-            break;
-        case R.id.button5:
-            a = display.getText().toString();
-            display.setText(a + "5");
-            break;
-        case R.id.button6:
-            a = display.getText().toString();
-            display.setText(a + "6");
-            break;
-        case R.id.button7:
-            a = display.getText().toString();
-            display.setText(a + "7");
-            break;
-        case R.id.button8:
-            a = display.getText().toString();
-            display.setText(a + "8");
-            break;
-        case R.id.button9:
-            a = display.getText().toString();
-            display.setText(a + "9");
-            break;
-        case R.id.button0:
-            a = display.getText().toString();
-            display.setText(a + "0");
-            break;
-        case R.id.buttonX:
-            a = display.getText().toString();
-            display.setText(a + "*");
-            break;
-        case R.id.buttonMin:
-            a = display.getText().toString();
-            display.setText(a + "-");
-            break;
-        case R.id.buttonPlus:
-            a = display.getText().toString();
-            display.setText(a + "+");
-            break;
-        case R.id.buttonDiv:
-            a = display.getText().toString();
-            display.setText(a + "/");
-            break;
-        case R.id.buttonClear:
-            a = display.getText().toString();
-            display.setText("");
-            break;
-        case R.id.buttonResult:
-            a = display.getText().toString();
-            display.setText(a + "=0");
-            result.setText("");
-            break;
-        case R.id.buttonDel:
-        String str = display.getText().toString();
-        if(str.length()>1){
-            str = display.substring(0, str.length() - 1);
-            display.setText(str);
-        }else if(str.length()<=1){
-            display.setText("");
     }
-}
-@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.button1:
+                display.setText(display.getText() + "1");
+                break;
+            case R.id.button2:
+                display.setText(display.getText() + "2");
+                break;
+            case R.id.button3:
+                display.setText(display.getText() + "3");
+                break;
+            case R.id.button4:
+                display.setText(display.getText() + "4");
+                break;
+            case R.id.button5:
+                display.setText(display.getText() + "5");
+                break;
+            case R.id.button6:
+                display.setText(display.getText() + "6");
+                break;
+            case R.id.button7:
+                display.setText(display.getText() + "7");
+                break;
+            case R.id.button8:
+                display.setText(display.getText() + "8");
+                break;
+            case R.id.button9:
+                display.setText(display.getText() + "9");
+                break;
+            case R.id.button0:
+                display.setText(display.getText() + "0");
+                break;
+            case R.id.buttonX:
+                a = Integer.parseInt(display.getText()+"");
+                mul=true;
+                display.setText(null);
+                break;
+            case R.id.buttonMin:
+                a = Integer.parseInt(display.getText()+"");
+                sub=true;
+                display.setText(null);
+                break;
+            case R.id.buttonPlus:
+                a = Integer.parseInt(display.getText()+"");
+                add=true;
+                display.setText(null);
+                break;
+            case R.id.buttonDiv:
+                a = Integer.parseInt(display.getText()+"");
+                div=true;
+                display.setText(null);
+                break;
+            case R.id.buttonClear:
+                display.setText("");
+                break;
+            case R.id.buttonResult:
+                b = Integer.parseInt(display.getText()+"");
+                if (add) {
+                    display.setText(a+b);
+                    add=false;
+                }
+                if (sub) {
+                    display.setText(a-b);
+                    add=false;
+                }
+                if (mul) {
+                    display.setText(a*b);
+                    add=false;
+                }
+                if (div) {
+                    display.setText(a/b);
+                    add=false;
+                }
+                }
+        }
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
-@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-}
+    }
